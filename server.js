@@ -2,10 +2,7 @@ require("dotenv").config()
 const app = require("./app")
 const mongoose = require("mongoose")
 
-mongoose.connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+mongoose.connect("mongodb+srv://aimecyuzuzo:dnoH7IVYr2XANPlW@cluster0.uwzwt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => {
         console.log("Connected to MongoDB")
         app.listen(3050, () => {
