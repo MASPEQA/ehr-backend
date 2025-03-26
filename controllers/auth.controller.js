@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const StaffMember = require("../models/StaffMember");
 const firebaseAdmin = require("../firebase.js");
 const Patient = require("../models/Patient.js");
-
+const StaffMember = require("../models/StaffMember");
+const socketUtils = require("../utils/socket.js");
 
 const signIn = async (req, res) => {
     try{
@@ -145,7 +145,6 @@ const addStaffMember = async (req, res) => {
 }
 
 
-
 const addPatient = async (req, res) => {
     try {
         let formData = req.body.formData
@@ -178,7 +177,7 @@ const addPatient = async (req, res) => {
 
             // Authenticate the user if successfully created
             // let authData = await authenticateNewUser(formData.email, formData.password)
-            
+
             return res.status(201).json({
                 message: "User created successfully",
                 email: formData.email
@@ -193,8 +192,25 @@ const addPatient = async (req, res) => {
     }
 }
 
+
+const getStaffMember = async (req, res) => {
+    try {
+        const user = await StaffMember.findById(req.params.id);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json({ "message": err.message });
+    }
+}
+
+
 module.exports = {
     signIn,
     refreshToken,
-    addStaffMember
+    addStaffMember,
+    addPatient,
+    getStaffMember,
+    getStaffMemberStream
 }

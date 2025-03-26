@@ -8,20 +8,6 @@ const initializeSocket = (server) => {
     io.on("connection", (socket) => {
         console.log(`Client connected: ${socket.id}`);
 
-        setTimeout(() => {
-        socket.emit("welcome", "Hello User");
-        socket.emit("staffMemberChanged", "try");
-        io.to(socket.id).emit("staffMemberChanged", "Working here");
-        }, 2000);
-
-        socket.on("sendMessage", (data) => {
-        io.emit("receiveMessage", data);
-        });
-
-        socket.on("staffMemberChanged", (data) => {
-        io.emit("staffMemberChanged", data);
-        });
-
         socket.on("disconnect", () => {
         console.log(`Client disconnected: ${socket.id}`);
         });
