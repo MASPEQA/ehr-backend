@@ -15,15 +15,16 @@ const app = express()
 const server = http.createServer(app)
 
 app.use(express.json());
+const port = 3050
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect("mongodb+srv://aimecyuzuzo:7vr4XTwc2PJRqWu0@cluster0.uwzwt.mongodb.net/ehr?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => {
         console.log("Connected to MongoDB")
-        server.listen(3050, () => {
+        initializeSocket(server)
+        server.listen(port, () => {
             console.log("Server is running on port 3050")
-            initializeSocket(server)
         })
-    })
+        })
     .catch(err => {
         console.error(err)
     })
@@ -35,4 +36,7 @@ app.use("/patient", patientRoutes)
 app.use("/staffmember", staffMemberRoutes)
 
 
-module.exports = { app, server };
+module.exports = { 
+    app,
+    server,
+};
