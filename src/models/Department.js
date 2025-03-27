@@ -6,7 +6,15 @@ const DepartmentSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    description: String
+    description: String,
+    manager: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "StaffMember"
+    },
+    parentDeparrment: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Department"
+    }
 })
 
 

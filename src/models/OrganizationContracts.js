@@ -19,7 +19,7 @@ const OrganizationContractSchema = new mongoose.Schema({
     },
     services: {
         type: [mongoose.Schema.Types.ObjectId],
-        ref: "ServiceContract"
+        ref: "Service"
     },
     isActive: {
         type: Boolean,

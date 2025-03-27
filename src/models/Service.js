@@ -2,14 +2,14 @@ const mongoose = require("mongoose");
 
 const ServiceContractSchema = new mongoose.Schema({
     name: {
-        type: String, // therapy, medication, etc.
+        type: String,
         required: true
     },
-    unitValue: { // price per unit -- might be a duration-based, a pill, etc.
+    unitValue: { 
         type: Number,
         required: true
     },
-    duration: { // duration of the service in hours
+    duration: {
         type: Number,
         required: true
     }

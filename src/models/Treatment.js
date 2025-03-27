@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const TreatmentSchema = new mongoose.Schema({
-    name: {
-        type: String,
+    initiator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "StaffMember",
         required: true
     },
     clinician: {
@@ -15,16 +16,27 @@ const TreatmentSchema = new mongoose.Schema({
         ref: "Patient",
         required: true
     },
+    serviceContract: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ServiceContract",
+        required: true
+    },
     notes: {
         type: [mongoose.Schema.Types.ObjectId],
         ref: "Note"
     },
-    price: {
-        type: Number,
+    supervisors: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: "StaffMember",
+        default: []
+    },
+    invoice: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Invoice",
         required: true
     },
-    duration: {
-        type: Number,
+    approvealTimestamp: {
+        type: Date,
         required: true
     }
 }, { timestamps: true })
