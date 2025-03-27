@@ -2,16 +2,21 @@ const express = require("express")
 const http = require("http")
 require("dotenv").config()
 const mongoose = require("mongoose")
-const { getStaffMemberStream } = require("./controllers/auth.controller")
+
+// Routes
 const authRoutes = require("./routes/auth.routes")
 const subscribeRoutes = require("./routes/subscribe.routes")
+const patientRoutes = require("./routes/patient.routes")
+const staffMemberRoutes = require("./routes/staffmember.routes")
+
+
 const { initializeSocket } = require("./utils/socket")
 const app = express()
 const server = http.createServer(app)
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://aimecyuzuzo:dnoH7IVYr2XANPlW@cluster0.uwzwt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(process.env.MONGO_URL)
     .then(() => {
         console.log("Connected to MongoDB")
         server.listen(3050, () => {
@@ -26,6 +31,8 @@ mongoose.connect("mongodb+srv://aimecyuzuzo:dnoH7IVYr2XANPlW@cluster0.uwzwt.mong
 
 app.use("/auth", authRoutes);
 app.use("/subscribe", subscribeRoutes)
+app.use("/patient", patientRoutes)
+app.use("/staffmember", staffMemberRoutes)
 
 
 module.exports = { app, server };
