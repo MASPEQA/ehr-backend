@@ -4,13 +4,13 @@ require("dotenv").config()
 const mongoose = require("mongoose")
 
 // Routes
-const authRoutes = require("./routes/auth.routes")
-const subscribeRoutes = require("./routes/subscribe.routes")
-const patientRoutes = require("./routes/patient.routes")
-const staffMemberRoutes = require("./routes/staffmember.routes")
+const authRoutes = require("./src/routes/auth.routes")
+const subscribeRoutes = require("./src/routes/subscribe.routes")
+const patientRoutes = require("./src/routes/patient.routes")
+const staffMemberRoutes = require("./src/routes/staffmember.routes")
 
 
-const { initializeSocket } = require("./utils/socket")
+const { initializeSocket } = require("./src/utils/socket")
 const app = express()
 const server = http.createServer(app)
 
