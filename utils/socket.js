@@ -13,7 +13,7 @@ const initializeSocket = (server) => {
         });
     });
 
-    console.log("✅ Socket.io initialized");
+    console.log("Socket.io initialized");
 };
 
 // Function to emit events from anywhere
