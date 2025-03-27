@@ -1,4 +1,4 @@
-const firebaseAdmin = require("../../firebase.js");
+const firebaseAdmin = require("../firebase.js");
 const { mongoose } = require("mongoose")
 
 

@@ -1,9 +1,11 @@
+require("dotenv").config();
+
 
 const signIn = async (req, res) => {
     try{
 
         console.log(req.body)
-        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.FIREBASE_API_KEY}`, {
+        const response = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.API_KEY_FIREBASE}`, {
             method: "POST",
             body: JSON.stringify({
                 email: req.body.email,
